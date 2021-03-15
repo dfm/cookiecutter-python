@@ -7,9 +7,8 @@ import codecs
 import os
 import re
 
-{% if cookiecutter.pybind11_extensions %}
-from pybind11.setup_helpers import Pybind11Extension, build_ext
-{% endif %}
+{% if cookiecutter.pybind11_extensions %}from pybind11.setup_helpers import Pybind11Extension, build_ext
+{% endif -%}
 from setuptools import find_packages, setup
 
 # PROJECT SPECIFIC
@@ -29,36 +28,47 @@ CLASSIFIERS = [
     "Programming Language :: Python :: 3",
 ]
 INSTALL_REQUIRES = [
+{%- if cookiecutter.required_dependencies %}
 {%- for req in cookiecutter.required_dependencies.split(',') %}
     "{{ req.strip() }}",{% endfor %}
+{%- endif %}
 ]
 EXTRA_REQUIRE = {
     "docs": [
     {%- for req in cookiecutter.docs_dependencies.split(',') %}
         "{{ req.strip() }}",{% endfor %}
     ],
-    {% if cookiecutter.optional_dependencies -%}
+    {%- if cookiecutter.optional_dependencies %}
     "all": [
     {%- for req in cookiecutter.optional_dependencies.split(',') %}
         "{{ req.strip() }}",{% endfor %}
     ],
-{% endif -%}
+    {%- endif %}
+    {%- if cookiecutter.test_dependencies %}
+    "test": [
+    {%- for req in cookiecutter.test_dependencies.split(',') %}
+        "{{ req.strip() }}",{% endfor %}
+    ],
+    {%- endif %}
 }
-
 {% if cookiecutter.pybind11_extensions %}
+{%- if cookiecutter.include_dirs %}
 include_dirs = [
 {%- for dirname in cookiecutter.include_dirs.split(',') %}
     "{{ dirname.strip() }}",{% endfor %}
 ]
+{%- endif %}
 ext_modules = [
 {%- for ext in cookiecutter.pybind11_extensions.split(',') %}
     Pybind11Extension(
         "{{ ext.strip() }}",
         ["src/{{ ext.strip().replace('.', '/') }}.cpp"],
-        include_dirs=include_dirs,
+        {% if cookiecutter.include_dirs %}include_dirs=include_dirs,
+        {% endif -%}
         language="c++",
     ),{% endfor %}
 ]
+{%- endif %}
 
 # END PROJECT SPECIFIC
 
@@ -108,6 +118,7 @@ if __name__ == "__main__":
         extras_require=EXTRA_REQUIRE,
         classifiers=CLASSIFIERS,
         zip_safe=False,
+        {%- if cookiecutter.pybind11_extensions %}
         ext_modules=ext_modules,
-        cmdclass={"build_ext": build_ext},
+        cmdclass={"build_ext": build_ext},{% endif %}
     )

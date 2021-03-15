@@ -1,14 +1,19 @@
 {
-  "package_name": "packagename",
-  "module_name": "{{ cookiecutter.package_name|lower()|replace(' ', '_') }}",
+  "package_name": "cookiecutter-python",
+  "module_name": "{{ cookiecutter.package_name|lower()|replace('-', '_') }}",
+  "year": "2021",
   "short_description": "",
   "author_name": "Dan Foreman-Mackey",
   "author_email": "foreman.mackey@gmail.com",
-  "project_url": "https://docs.exoplanet.codes",
-  "github_project": "astropy/astropy",
-  "required_dependencies": "",
-  "optional_dependencies": "",
-  "docs_dependencies": "sphinx>=1.7.5",
+  "project_url": "https://github.com/dfm/cookiecutter-python",
+  "github_project": "dfm/cookiecutter-python",
+  "default_branch": "main",
   "minimum_python_version": ["3.6", "3.7", "3.8", "3.9"],
-  "pybind11_extensions": ""
+  "required_dependencies": "numpy",
+  "optional_dependencies": "",
+  "test_dependencies": "pytest,pytest-cov",
+  "docs_dependencies": "sphinx>=1.7.5,myst-nb",
+  "sphinx_theme": "sphinx_book_theme",
+  "pybind11_extensions": "",
+  "include_dirs": ""
 }

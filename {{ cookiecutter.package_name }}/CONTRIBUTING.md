@@ -2,8 +2,8 @@
 
 ### Reporting issues
 
-If you find a bug or other unexpected behavior while using `{{ cookiecutter.module_name }}`,
-open an issue on the [GitHub repository](https://github.com/{{ cookiecutter.github_repo }}/issues)
+If you find a bug or other unexpected behavior while using `{{ cookiecutter.package_name }}`,
+open an issue on the [GitHub repository](https://github.com/{{ cookiecutter.github_project }}/issues)
 and we will try to respond and (hopefully) solve the problem in a timely manner.
 Similarly, if you have a feature request or question about the library, the best
 place to post those is currently on GitHub as an issue, but that is likely
