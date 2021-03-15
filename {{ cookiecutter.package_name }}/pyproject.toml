@@ -1,0 +1,15 @@
+
+[build-system]
+requires = [
+    "setuptools>=40.6.0",
+    "wheel",
+    "setuptools_scm",
+{% if cookiecutter.pybind11_extensions %}
+    "oldest-supported-numpy",
+    "pybind11>=2.4",
+{% endif %}
+]
+build-backend = "setuptools.build_meta"
+
+[tool.black]
+line-length = 79

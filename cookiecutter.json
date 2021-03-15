@@ -1,0 +1,14 @@
+{
+  "package_name": "packagename",
+  "module_name": "{{ cookiecutter.package_name|lower()|replace(' ', '_') }}",
+  "short_description": "",
+  "author_name": "Dan Foreman-Mackey",
+  "author_email": "foreman.mackey@gmail.com",
+  "project_url": "https://docs.exoplanet.codes",
+  "github_project": "astropy/astropy",
+  "required_dependencies": "",
+  "optional_dependencies": "",
+  "docs_dependencies": "sphinx>=1.7.5",
+  "minimum_python_version": ["3.6", "3.7", "3.8", "3.9"],
+  "pybind11_extensions": ""
+}
